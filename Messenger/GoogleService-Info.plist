@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyBFlCPIt4tSYd4Wv344p91EjR-7SdNyZ1I</string>
+	<key>GCM_SENDER_ID</key>
+	<string>276108017771</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.lynnguyen.Messenger</string>
+	<key>PROJECT_ID</key>
+	<string>messenger-8ef7d</string>
+	<key>STORAGE_BUCKET</key>
+	<string>messenger-8ef7d.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:276108017771:ios:b5982aaa1eeab40d03312e</string>
+</dict>
+</plist>
