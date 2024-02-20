@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CE6715802B7EABEE00E92DC1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE67157F2B7EABEE00E92DC1 /* GoogleService-Info.plist */; };
 		CE6715822B7EB71000E92DC1 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6715812B7EB71000E92DC1 /* DatabaseManager.swift */; };
+		CE6715BF2B85002000E92DC1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE6715BE2B85002000E92DC1 /* GoogleService-Info.plist */; };
 		CE6EF4D12B79F9EA0063DA68 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6EF4D02B79F9EA0063DA68 /* AppDelegate.swift */; };
 		CE6EF4D32B79F9EA0063DA68 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6EF4D22B79F9EA0063DA68 /* SceneDelegate.swift */; };
 		CE6EF4D52B79F9EA0063DA68 /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6EF4D42B79F9EA0063DA68 /* ConversationsViewController.swift */; };
@@ -28,8 +28,9 @@
 /* Begin PBXFileReference section */
 		A461247E8846E5482A1939B1 /* Pods_Messenger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Messenger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAE4EAA579326EBC7C9FD5BB /* Pods-Messenger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messenger.debug.xcconfig"; path = "Target Support Files/Pods-Messenger/Pods-Messenger.debug.xcconfig"; sourceTree = "<group>"; };
-		CE67157F2B7EABEE00E92DC1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE6715812B7EB71000E92DC1 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		CE6715BD2B82741900E92DC1 /* Messenger.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Messenger.entitlements; sourceTree = "<group>"; };
+		CE6715BE2B85002000E92DC1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE6EF4CD2B79F9EA0063DA68 /* Messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Messenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6EF4D02B79F9EA0063DA68 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE6EF4D22B79F9EA0063DA68 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,7 +99,8 @@
 		CE6EF4CF2B79F9EA0063DA68 /* Messenger */ = {
 			isa = PBXGroup;
 			children = (
-				CE67157F2B7EABEE00E92DC1 /* GoogleService-Info.plist */,
+				CE6715BD2B82741900E92DC1 /* Messenger.entitlements */,
+				CE6715BE2B85002000E92DC1 /* GoogleService-Info.plist */,
 				CE6EF4E82B79FC200063DA68 /* Resources */,
 				CE6EF4E72B79FC1A0063DA68 /* ViewModels */,
 				CE6EF4E62B79FC150063DA68 /* Models */,
@@ -186,6 +188,7 @@
 				CE6EF4CA2B79F9EA0063DA68 /* Frameworks */,
 				CE6EF4CB2B79F9EA0063DA68 /* Resources */,
 				49536D672F60FB1EFA24B8C7 /* [CP] Embed Pods Frameworks */,
+				4D8E3F55254749F9F3F763D7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -220,6 +223,9 @@
 				Base,
 			);
 			mainGroup = CE6EF4C42B79F9EA0063DA68;
+			packageReferences = (
+				CE6715BC2B826F5000E92DC1 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+			);
 			productRefGroup = CE6EF4CE2B79F9EA0063DA68 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -235,7 +241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE6EF4DD2B79F9EC0063DA68 /* LaunchScreen.storyboard in Resources */,
-				CE6715802B7EABEE00E92DC1 /* GoogleService-Info.plist in Resources */,
+				CE6715BF2B85002000E92DC1 /* GoogleService-Info.plist in Resources */,
 				CE6EF4DA2B79F9EC0063DA68 /* Assets.xcassets in Resources */,
 				CE6EF4D82B79F9EA0063DA68 /* Main.storyboard in Resources */,
 			);
@@ -281,6 +287,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Messenger/Pods-Messenger-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4D8E3F55254749F9F3F763D7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Messenger/Pods-Messenger-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Messenger/Pods-Messenger-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Messenger/Pods-Messenger-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -451,11 +474,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Messenger/Messenger.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Messenger/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access to take a profile picture";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please allow access to select a photo for your profile";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -481,11 +507,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Messenger/Messenger.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Messenger/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access to take a profile picture";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please allow access to select a photo for your profile";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -527,6 +556,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CE6715BC2B826F5000E92DC1 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 16.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = CE6EF4C52B79F9EA0063DA68 /* Project object */;
 }

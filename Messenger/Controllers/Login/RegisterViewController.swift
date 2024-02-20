@@ -121,13 +121,6 @@ class RegisterViewController: UIViewController {
         title = "Register"
         view.backgroundColor = .white
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: "Register",
-            style: .done,
-            target: self,
-            action: #selector(self.didTapRegister)
-        )
-        
         emailField.delegate = self
         passwordField.delegate = self
         
@@ -199,6 +192,8 @@ class RegisterViewController: UIViewController {
 
         }
         
+        
+                
     }
     
     func alertUserLogginError(message: String = "Please enter all information to create a new account.") {
@@ -209,12 +204,6 @@ class RegisterViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
         
         present(alert, animated: true)
-    }
-    
-    @objc private func didTapRegister() {
-        let vc = RegisterViewController()
-        vc.title = "Create Account"
-        navigationController?.pushViewController(vc, animated: true)
     }
     
     override func viewDidLayoutSubviews() {
@@ -255,14 +244,18 @@ class RegisterViewController: UIViewController {
                                   height: 52)
 
     }
-
-    
 }
 
 extension RegisterViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == emailField {
+        if textField == firstNameField {
+            lastNameField.becomeFirstResponder()
+        }
+        else if textField == lastNameField {
+            emailField.becomeFirstResponder()
+        }
+        else if textField == emailField {
             passwordField.becomeFirstResponder()
         }
         else if textField == passwordField {
