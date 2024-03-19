@@ -7,8 +7,11 @@
 
 import UIKit
 import FirebaseAuth
+import JGProgressHUD
 
-class RegisterViewController: UIViewController {
+final class RegisterViewController: UIViewController {
+
+    private let spinner = JGProgressHUD(style: .dark)
 
     private let imageView: UIImageView = {
         let imageView = UIImageView()
@@ -41,7 +44,7 @@ class RegisterViewController: UIViewController {
         
         field.leftView = UIView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 10, height: 0)))
         field.leftViewMode = .always
-        field.backgroundColor = .white
+        field.backgroundColor = .secondarySystemBackground
         return field
     }()
     
@@ -59,7 +62,7 @@ class RegisterViewController: UIViewController {
         
         field.leftView = UIView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 10, height: 0)))
         field.leftViewMode = .always
-        field.backgroundColor = .white
+        field.backgroundColor = .secondarySystemBackground
         
         field.isSecureTextEntry = true
         return field
@@ -79,7 +82,7 @@ class RegisterViewController: UIViewController {
         
         field.leftView = UIView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 10, height: 0)))
         field.leftViewMode = .always
-        field.backgroundColor = .white
+        field.backgroundColor = .secondarySystemBackground
         
         return field
     }()
@@ -98,7 +101,7 @@ class RegisterViewController: UIViewController {
         
         field.leftView = UIView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 10, height: 0)))
         field.leftViewMode = .always
-        field.backgroundColor = .white
+        field.backgroundColor = .secondarySystemBackground
         
         return field
     }()
@@ -119,7 +122,7 @@ class RegisterViewController: UIViewController {
         super.viewDidLoad()
 
         title = "Register"
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         
         emailField.delegate = self
         passwordField.delegate = self
@@ -133,11 +136,12 @@ class RegisterViewController: UIViewController {
         scrollView.addSubview(lastNameField)
         
         let gesture = UITapGestureRecognizer(target: self,
-                                             action: #selector(self.didTapChangeProfilePic))
+                                             action: #selector(didTapChangeProfilePic))
         imageView.isUserInteractionEnabled = true
+        scrollView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(gesture)
 
-        registerButton.addTarget(self, action: #selector(self.registerButtonTapped), for: .touchUpInside)
+        registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
     }
     
     @objc private func didTapChangeProfilePic() {
@@ -164,10 +168,16 @@ class RegisterViewController: UIViewController {
             return
         }
         
+        spinner.show(in: view)
+        
         // Firebase login
         DatabaseManager.shared.userExists(with: email) { [weak self] exists in
             guard let strongSelf = self else {
                 return
+            }
+            
+            DispatchQueue.main.async {
+                strongSelf.spinner.dismiss()
             }
             
             guard !exists else {
@@ -175,25 +185,48 @@ class RegisterViewController: UIViewController {
                 strongSelf.alertUserLogginError(message: "Looks like a user account for that email address already exists. ")
                 return
             }
-            
+                        
             FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
                 guard authResult != nil, error == nil else {
                     print("Error creating user")
                     return
                 }
                 
-                DatabaseManager.shared.insertUser(with: ChatAppUser(firstName: firstName,
-                                                                    lastName: lastName,
-                                                                    emailAddress: email))
+                UserDefaults.standard.setValue(email, forKey: "email")
+                UserDefaults.standard.setValue("\(firstName) \(lastName)", forKey: "name")
+                
+                let chatUser = ChatAppUser(firstName: firstName,
+                                           lastName: lastName,
+                                           emailAddress: email)
+                    
+                DatabaseManager.shared.insertUser(with: chatUser, completion: { success in
+                    if success {
+                        // upload image
+                        guard let image = strongSelf.imageView.image,
+                              let data = image.pngData() else {
+                            return
+                        }
+                        
+                        let fileName = chatUser.profilePictureFileName
+                        StorageManager.shared.uploadProfilePicture(with: data, fileName: fileName) { result in
+                            switch result {
+                            case .success(let downloadUrl):
+                                UserDefaults.standard.set(downloadUrl, forKey: "profile_picture_url")
+                                print(downloadUrl)
+                            case .failure(let error):
+                                print("Storage manager error: \(error)")
+                            }
+                        }
+                    }
+                    
+                })
                 
                 strongSelf.navigationController?.dismiss(animated: true, completion: nil)
 
             }
 
         }
-        
-        
-                
+
     }
     
     func alertUserLogginError(message: String = "Please enter all information to create a new account.") {
@@ -216,6 +249,7 @@ class RegisterViewController: UIViewController {
                                  y: 20 + view.safeAreaInsets.top,
                                  width: size,
                                  height: size)
+        
         imageView.layer.cornerRadius = imageView.width / 2
         
         firstNameField.frame = CGRect(x: 30,
@@ -306,10 +340,10 @@ extension RegisterViewController: UIImagePickerControllerDelegate, UINavigationC
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true)
         
-        guard let selectedImage = info[UIImagePickerController.InfoKey(rawValue: UIImagePickerController.InfoKey.editedImage.rawValue)] as? UIImage else {
+        guard let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
             return
         }
-        self.imageView.image = selectedImage
+        imageView.image = selectedImage
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
