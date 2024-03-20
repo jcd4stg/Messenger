@@ -123,6 +123,7 @@ extension NewConversationViewController: UISearchBarDelegate {
         }
         
         searchBar.resignFirstResponder()
+        
 
         results.removeAll()
         spinner.show(in: view)

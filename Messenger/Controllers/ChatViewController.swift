@@ -114,7 +114,7 @@ final class ChatViewController: MessagesViewController {
         vc.title = "Pick Location"
         vc.navigationItem.largeTitleDisplayMode = .never
         vc.completion = { [weak self] selectionCoordinates in
-             
+            
             guard let strongSelf = self else {
                 return
             }

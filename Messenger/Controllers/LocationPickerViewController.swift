@@ -88,6 +88,7 @@ final class LocationPickerViewController: UIViewController {
         }
         navigationController?.popToRootViewController(animated: true)
         completion?(coordinates)
+
     }
     
     override func viewDidLayoutSubviews() {

@@ -171,6 +171,8 @@ final class ConversationsViewController: UIViewController {
         super.viewDidAppear(animated)
         
         validateAuth()
+        
+        
     }
 
     private func validateAuth() {
