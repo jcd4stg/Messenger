@@ -16,6 +16,6 @@ A beginners swift project to create a real time chat application in Swift 5 usin
 - Dark Mode Support
 
 ### Click the image to watch demonstration video
-[![Screenshot](/Users/user/Huy-Mac/IOS/IOSAcademy/Messenger/images/Screen.png)](https://www.youtube.com/watch?v=p7-bTS33PyM)
+[![Screenshot](https://raw.githubusercontent.com/jcd4stg/Messenger/main/images/Screen.png)](https://www.youtube.com/watch?v=p7-bTS33PyM)
 
 Take a look at the free playlist on Youtube for a step by step guide how to build this project!
