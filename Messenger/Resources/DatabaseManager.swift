@@ -9,7 +9,7 @@ import Foundation
 import FirebaseCore
 import MessageKit
 import CoreLocation
-import FirebaseDatabase
+import Firebase
 
 ///  Manager object to read and write data to real time firebase database
 final class DatabaseManager {

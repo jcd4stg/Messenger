@@ -181,6 +181,7 @@ final class LoginViewController: UIViewController {
             }
             
             UserDefaults.standard.set(email, forKey: "email")
+            NotificationCenter.default.post(name: .didLogInNotification, object: nil)
 
             print("Logged in User: \(user)")
             strongSelf.navigationController?.dismiss(animated: true, completion: nil)
