@@ -41,10 +41,7 @@ final class ProfileViewController: UIViewController {
             
             actionSheet.addAction(UIAlertAction(title: "Log Out",
                                                 style: .destructive,
-                                                handler: { [weak self] _ in
-                guard let strongSelf = self else {
-                    return
-                }
+                                                handler: {  _ in
                 
                 UserDefaults.standard.setValue(nil, forKey: "email")
                 UserDefaults.standard.setValue(nil, forKey: "name")
@@ -76,8 +73,7 @@ final class ProfileViewController: UIViewController {
             strongSelf.present(actionSheet, animated: true)
         }))
         
-        tableView.register(UITableViewCell.self,
-                           forCellReuseIdentifier: "cell")
+
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableHeaderView = createTableHeader()

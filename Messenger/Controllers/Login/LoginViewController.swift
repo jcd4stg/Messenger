@@ -162,7 +162,7 @@ final class LoginViewController: UIViewController {
             }
             
             let user = result.user
-            
+                    
             let safeEmail = DatabaseManager.safeEmail(emailAddress: email)
             
             DatabaseManager.shared.getDataFor(path: safeEmail) { result in
@@ -181,8 +181,7 @@ final class LoginViewController: UIViewController {
             }
             
             UserDefaults.standard.set(email, forKey: "email")
-            NotificationCenter.default.post(name: .didLogInNotification, object: nil)
-
+            
             print("Logged in User: \(user)")
             strongSelf.navigationController?.dismiss(animated: true, completion: nil)
         }
@@ -309,7 +308,7 @@ extension LoginViewController: LoginButtonDelegate {
                             }
                             print("Downloading data from facebook image")
                             
-                            URLSession.shared.dataTask(with: url    ) { data, _, error in
+                            URLSession.shared.dataTask(with: url) { data, _, error in
                                 guard let data = data, error == nil else {
                                     print("Failed to get data from Facebook")
                                     return

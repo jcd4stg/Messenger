@@ -31,14 +31,15 @@ final class ChatViewController: MessagesViewController {
     private var messages = [Message]()
     
     private var selfSender: Sender? {
-        guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
+        guard let email = UserDefaults.standard.value(forKey: "email") as? String,
+              let senderName = UserDefaults.standard.value(forKey: "name") as? String else {
             return nil
         }
         let safeEmail = DatabaseManager.safeEmail(emailAddress: email)
         
         return Sender(photoURL: "",
                       senderId: safeEmail,
-                      displayName: "Me")
+                      displayName: senderName)
 
     }
         
@@ -377,6 +378,8 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         }
         print("Sending: \(text)")
         
+        NotificationCenter.default.post(name: .didFetchConversation, object: nil)
+
         let message = Message(sender: selfSender,
                               messageId: messageId,
                               sentDate: Date(),

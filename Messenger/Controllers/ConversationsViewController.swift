@@ -32,7 +32,6 @@ final class ConversationsViewController: UIViewController {
         label.textColor = .gray
         label.font = .systemFont(ofSize: 21, weight: .medium)
         label.isHidden = true
-        //label.backgroundColor = .systemBackground
         return label
     }()
     
@@ -53,7 +52,7 @@ final class ConversationsViewController: UIViewController {
         
         startListeningForConversation()
         
-        loginObserver = NotificationCenter.default.addObserver(forName: .didLogInNotification, object: nil, queue: .main) { [weak self] _ in
+        loginObserver = NotificationCenter.default.addObserver(forName: .didFetchConversation, object: nil, queue: .main) { [weak self] _ in
             
             guard let strongSelf = self else {
                 return
@@ -171,7 +170,6 @@ final class ConversationsViewController: UIViewController {
         super.viewDidAppear(animated)
         
         validateAuth()
-        
         
     }
 

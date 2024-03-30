@@ -39,6 +39,8 @@ extension UIView {
 extension Notification.Name {
     /// Notification when user logs in
     static let didLogInNotification = Notification.Name("didLogInNotification")
+    static let didFetchConversation = Notification.Name("didFetchConversation")
+
 }
 
 extension DateFormatter {
